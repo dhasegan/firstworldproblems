@@ -11,20 +11,34 @@
 
   </head>
   <body>
-
     <div class="container">
+      <div class ="row">
+      <div class="col-md-8">
+
+      {% if text %}
+        <strong> Really? Someone also said: </strong> <br>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            {{ text }}
+          </div>
+        </div>
+        <hr>
+      {% endif %}
+
       <form class="form-inline qaicont-form" role="form" action='/' method='POST'>
         {% csrf_token %}
         <div class="row">
           <div class="col-md-2">
             <label class="control-label" for="problem">What is your problem:</label>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-10">
             <input class="form-control" id="problem" type="text" name="text" value="">  
           </div>
         </div>
         <button class="btn btn-success" data-loading-text="Loading..."> Submit </button>
-    </form>
+      </form>
+      </div>
+      </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
