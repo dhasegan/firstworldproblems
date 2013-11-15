@@ -2,21 +2,23 @@
 
 from os import environ, path
 
-DEBUG = True
+DEBUG = environ.get('DEBUG_STATE', 'True') == 'True'
 TEMPLATE_DEBUG = DEBUG
 
 PROJECT_ROOT = path.realpath(path.dirname(__file__)) + '/'
 
 ADMINS = (
-    ('Daniel Hasegan', 'danielhasegan@gmail.com'),
+    # ('Daniel Hasegan', 'noemail'),
 )
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': PROJECT_ROOT + '/db/database.db',                      # Or path to database file if using sqlite3.
+        'NAME': PROJECT_ROOT + 'db/database.db',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -65,7 +67,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = 'static'
+STATIC_ROOT = 'staticfiles'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
